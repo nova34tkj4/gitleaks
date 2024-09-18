@@ -1,0 +1,34 @@
+name: Gitleaks
+
+on:
+  pull_request:
+    paths:
+      - '**/*.go'
+      - '**/*.py'
+      - '**/*.js'
+      - '**/*.ts'
+      - '**/*.rb'
+      - '**/*.java'
+      - '**/*.c'
+      - '**/*.cpp'
+      - '**/*.h'
+      - '**/*.sh'
+      - '**/*.yaml'
+      - '**/*.yml'
+
+jobs:
+  gitleaks:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v3
+
+      - name: Set up Gitleaks
+        uses: zricethezav/gitleaks-action@v1
+        with:
+          config: '.gitleaks.toml'  # Optional: specify your custom Gitleaks config file if you have one
+          path: '.'  # Optional: specify the path to scan if different from the root
+
+      - name: Run Gitleaks
+        run: gitleaks --path=. --config=.gitleaks.toml
