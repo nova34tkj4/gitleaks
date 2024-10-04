@@ -18,3 +18,4 @@ jobs:
           git config --global user.email "novahariyakusuma@gmail.com"
           git config --global user.name "nova hariya"
           git revert HEAD --no-edit
+          git push
