@@ -1,4 +1,4 @@
-name: Block Direct Push to Master
+name: Block Direct Push to Main
 
 on:
   push:
@@ -9,7 +9,9 @@ jobs:
   block:
     runs-on: ubuntu-latest
     steps:
-      - name: Check if push is direct
+      - name: Block Direct Push
         run: |
-          echo "Direct pushes to the master branch are not allowed. Please create a pull request instead."
+          echo "Direct pushes to the main branch are not allowed. Reverting the push."
+          git revert HEAD --no-edit
+          git push origin main
           exit 1
