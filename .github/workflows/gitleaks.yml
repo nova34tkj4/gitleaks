@@ -15,7 +15,8 @@ jobs:
       - name: Block Direct Push
         run: |
           echo "Direct pushes to the main branch are not allowed. Reverting the push."
+          git config --global user.email "action@github.com"
+          git config --global user.name "GitHub Action"
           git revert HEAD --no-edit
           git push origin main
           exit 1
-
