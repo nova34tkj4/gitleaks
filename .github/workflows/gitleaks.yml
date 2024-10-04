@@ -9,9 +9,13 @@ jobs:
   block:
     runs-on: ubuntu-latest
     steps:
+      - name: Checkout repository
+        uses: actions/checkout@v2
+        
       - name: Block Direct Push
         run: |
           echo "Direct pushes to the main branch are not allowed. Reverting the push."
           git revert HEAD --no-edit
           git push origin main
           exit 1
+
